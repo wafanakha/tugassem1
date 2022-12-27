@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int searching(int bil[], int bilangan, int panjang)
+int searching(int bil[], int key, int panjang)
 {
 
     for (int i = 0; i < panjang; i++)
     {
-        if (bil[i] == bilangan)
+        if (bil[i][0] == key)
         {
             return i;
         }
@@ -26,7 +26,9 @@ void bubbleSortAsc(string a[][4], int size)
         {
             if (a[j][0][0] < a[i][0][0])
             {
-                temp = a[i][0];
+                temp = a[i][0];][0];
+][0];
+
                 a[i][0] = a[j][0];
                 a[j][0] = temp;
             }
