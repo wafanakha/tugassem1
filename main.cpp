@@ -1,6 +1,9 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
+
+// array yang digunakan untuk menyimpan data penduduk
+// setiap baris berisi [nama, alamat, status pajak, status pernikahan]
 string penduduk[100][4] = {{"agus", "03/04", "ya", "menikah"},
                            {"ferguson", "05/01", "tidak", "belum kawin"},
                            {"levine", "03/01", "ya", "belum kawin"},
@@ -9,11 +12,14 @@ string penduduk[100][4] = {{"agus", "03/04", "ya", "menikah"},
                            {"alex", "03/04", "tidak", "belum kawin"},
                            {"einstein", "03/04", "ya", "menikah"}};
 
+// fungsi untuk mencari data penduduk berdasarkan nama atau alamat
 void searching(string bil[][4], int panjang, int value)
 {
     string key;
     int no = 0;
 
+    // jika value ==0, pencarian dilakukan berdasarkan nama
+    // jika value ==1, pencarian dilakukan berdasarkan alamat
     if (value == 0)
     {
         cout << "masukkan nama penduduk: ";
@@ -28,10 +34,13 @@ void searching(string bil[][4], int panjang, int value)
     cout << "===============================================================\n";
     cout << "No" << setw(15) << "Nama" << setw(15) << "Alamat" << setw(15) << "Pajak" << setw(15) << "Status" << setw(15) << endl;
     cout << "===============================================================\n";
+    // looping untuk mengecek setiap baris dari array penduduk
     for (int i = 0; i < panjang; i++)
     {
+        // jika data yang dicari ditemukan
         if (bil[i][value] == key)
         {
+            // menampilkan data yang ditemukan
             cout << no << i + 1 << setw(15) << penduduk[i][0] << setw(15) << penduduk[i][1] << setw(15) << penduduk[i][2] << setw(15) << penduduk[i][3] << endl;
         }
     }
@@ -61,6 +70,7 @@ void isiPenduduk(string penduduk[][4], int size)
 {
     cout << "berapa data penduduk yang akan dimasukkan: ";
     cin >> size;
+    // looping untuk mengubah isi array penduduk
     for (int i = 0; i < size; i++)
     {
         int k = i + 1;
@@ -74,6 +84,7 @@ void isiPenduduk(string penduduk[][4], int size)
         cin >> penduduk[i][3];
     }
 }
+// fungsi untuk mengubah satu data penduduk
 void ubahData(string penduduk[][4], int panjang)
 {
     string key;
@@ -84,7 +95,7 @@ void ubahData(string penduduk[][4], int panjang)
         if (penduduk[i][0] == key)
         {
             cout << "----------------------" << endl;
-            cout << "masukkan nama penduduk : "
+            cout << "masukkan nama penduduk baru"
                  << ": \t";
             cin >> penduduk[i][0];
             cout << "masukkan alamat penduduk "
@@ -169,11 +180,13 @@ int main()
             {
             case 1:
                 isiPenduduk(penduduk, panjangPenduduk);
+                bubbleSortAsc(penduduk, panjangPenduduk);
                 cout << "apakah anda ingin kembali ke menu utama?(y/n)";
                 cin >> ulang;
                 break;
             case 2:
                 ubahData(penduduk, panjangPenduduk);
+                bubbleSortAsc(penduduk, panjangPenduduk);
                 cout << "apakah anda ingin kembali ke menu utama?(y/n)";
                 cin >> ulang;
                 break;
@@ -219,6 +232,7 @@ int main()
             break;
         case 3:
             panjangPenduduk += masukData(penduduk, panjangPenduduk);
+            bubbleSortAsc(penduduk, panjangPenduduk);
             cout << "apakah anda ingin kembali ke menu utama?(y/n)";
             cin >> ulang;
             break;
@@ -227,8 +241,10 @@ int main()
             cout << "===============================================================\n";
             cout << "No" << setw(15) << "Nama" << setw(15) << "Alamat" << setw(15) << "Pajak" << setw(15) << "Status" << setw(15) << endl;
             cout << "===============================================================\n";
+            // looping untuk mengecek setiap baris dari array penduduk
             for (int i = 0; i < panjangPenduduk; i++)
             {
+
                 cout << no << i + 1 << setw(15) << penduduk[i][0] << setw(15) << penduduk[i][1] << setw(15) << penduduk[i][2] << setw(15) << penduduk[i][3] << endl;
             }
             cout << "===============================================================\n";
